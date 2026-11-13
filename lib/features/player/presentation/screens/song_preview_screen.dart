@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:singersinc/core/storage/local_file_storage.dart';
 import 'package:singersinc/features/player/presentation/controllers/audio_playback_controller.dart';
 import 'package:singersinc/features/player/presentation/widgets/audio_control_bar.dart';
@@ -124,6 +125,16 @@ class _SongPreviewScreenState extends ConsumerState<SongPreviewScreen> {
           loading: () => const Text('Carregando música...'),
           error: (_, __) => const Text('Erro ao carregar'),
         ),
+        actions: [
+          IconButton(
+            key: const Key('open_editor_button'),
+            tooltip: 'Delimitar Compassos (Editor)',
+            icon: const Icon(Icons.crop_square_rounded),
+            onPressed: () {
+              context.push('/songs/${widget.songId}/editor');
+            },
+          ),
+        ],
       ),
       body: _buildBody(context),
     );

@@ -72,3 +72,4 @@ class AudioPlaybackState {
   String toString() =>
       'AudioPlaybackState(playing: $isPlaying, pos: ${positionMs}ms, dur: ${durationMs}ms, speed: ${speed}x)';
 }
+

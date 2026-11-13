@@ -188,3 +188,4 @@ class _AudioControlBarState extends ConsumerState<AudioControlBar> {
     );
   }
 }
+

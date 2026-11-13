@@ -244,6 +244,12 @@ class SongsLibraryScreen extends ConsumerWidget {
                         return SongCardWidget(
                           item: item,
                           onTap: () => context.push('/songs/${item.id}/preview'),
+                          onOpenPlayer: () =>
+                              context.push('/songs/${item.id}/player'),
+                          onSyncManual: () =>
+                              context.push('/songs/${item.id}/sync'),
+                          onEditMeasures: () =>
+                              context.push('/songs/${item.id}/editor'),
                           onEditTitle: () =>
                               _openEditTitleDialog(context, ref, item),
                           onReplacePdf: () => _replaceAsset(

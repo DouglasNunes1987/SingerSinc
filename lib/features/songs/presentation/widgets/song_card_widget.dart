@@ -13,6 +13,9 @@ class SongCardWidget extends StatelessWidget {
     required this.onReplacePdf,
     required this.onReplaceAudio,
     required this.onDelete,
+    this.onEditMeasures,
+    this.onSyncManual,
+    this.onOpenPlayer,
     this.onTap,
     super.key,
   });
@@ -22,6 +25,9 @@ class SongCardWidget extends StatelessWidget {
   final VoidCallback onReplacePdf;
   final VoidCallback onReplaceAudio;
   final VoidCallback onDelete;
+  final VoidCallback? onEditMeasures;
+  final VoidCallback? onSyncManual;
+  final VoidCallback? onOpenPlayer;
   final VoidCallback? onTap;
 
   String _formatDuration(int? durationMs) {
@@ -108,6 +114,12 @@ class SongCardWidget extends StatelessWidget {
                     tooltip: 'Opções da música',
                     onSelected: (value) {
                       switch (value) {
+                        case 'open_player':
+                          onOpenPlayer?.call();
+                        case 'sync_manual':
+                          onSyncManual?.call();
+                        case 'edit_measures':
+                          onEditMeasures?.call();
                         case 'edit_title':
                           onEditTitle();
                         case 'replace_pdf':
@@ -119,6 +131,36 @@ class SongCardWidget extends StatelessWidget {
                       }
                     },
                     itemBuilder: (context) => [
+                      if (onOpenPlayer != null)
+                        const PopupMenuItem(
+                          value: 'open_player',
+                          child: ListTile(
+                            leading: Icon(Icons.play_circle_outline_rounded),
+                            title: Text('Player com Partitura'),
+                            contentPadding: EdgeInsets.zero,
+                            dense: true,
+                          ),
+                        ),
+                      if (onSyncManual != null)
+                        const PopupMenuItem(
+                          value: 'sync_manual',
+                          child: ListTile(
+                            leading: Icon(Icons.music_note_rounded),
+                            title: Text('Sincronização manual'),
+                            contentPadding: EdgeInsets.zero,
+                            dense: true,
+                          ),
+                        ),
+                      if (onEditMeasures != null)
+                        const PopupMenuItem(
+                          value: 'edit_measures',
+                          child: ListTile(
+                            leading: Icon(Icons.crop_square_rounded),
+                            title: Text('Delimitar compassos (Editor)'),
+                            contentPadding: EdgeInsets.zero,
+                            dense: true,
+                          ),
+                        ),
                       const PopupMenuItem(
                         value: 'edit_title',
                         child: ListTile(

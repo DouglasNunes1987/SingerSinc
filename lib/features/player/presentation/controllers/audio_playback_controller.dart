@@ -122,3 +122,4 @@ final audioPlaybackControllerProvider =
     AutoDisposeNotifierProvider<AudioPlaybackController, AudioPlaybackState>(
   AudioPlaybackController.new,
 );
+

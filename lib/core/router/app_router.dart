@@ -6,8 +6,11 @@ import 'package:singersinc/features/auth/presentation/controllers/auth_controlle
 import 'package:singersinc/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:singersinc/features/auth/presentation/screens/login_screen.dart';
 import 'package:singersinc/features/auth/presentation/screens/register_screen.dart';
+import 'package:singersinc/features/editor/presentation/screens/score_editor_screen.dart';
+import 'package:singersinc/features/player/presentation/screens/smart_player_screen.dart';
 import 'package:singersinc/features/player/presentation/screens/song_preview_screen.dart';
 import 'package:singersinc/features/songs/presentation/screens/songs_library_screen.dart';
+import 'package:singersinc/features/sync/presentation/screens/manual_sync_screen.dart';
 
 /// Notifier auxiliar que notifica o [GoRouter] sempre que o estado de
 /// autenticação (`isAuthenticated`) mudar no Riverpod.
@@ -76,6 +79,27 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) {
           final songId = state.pathParameters['id'] ?? '';
           return SongPreviewScreen(songId: songId);
+        },
+      ),
+      GoRoute(
+        path: '/songs/:id/editor',
+        builder: (context, state) {
+          final songId = state.pathParameters['id'] ?? '';
+          return ScoreEditorScreen(songId: songId);
+        },
+      ),
+      GoRoute(
+        path: '/songs/:id/sync',
+        builder: (context, state) {
+          final songId = state.pathParameters['id'] ?? '';
+          return ManualSyncScreen(songId: songId);
+        },
+      ),
+      GoRoute(
+        path: '/songs/:id/player',
+        builder: (context, state) {
+          final songId = state.pathParameters['id'] ?? '';
+          return SmartPlayerScreen(songId: songId);
         },
       ),
     ],

@@ -173,3 +173,4 @@ final audioPlayerServiceProvider =
   });
   return service;
 });
+
